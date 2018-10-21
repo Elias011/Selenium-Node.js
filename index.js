@@ -4,7 +4,6 @@ const model = require ('./services/index');
 
 (async function example() {
   try {
-  // await driver.get('https://formy-project.herokuapp.com/');
    await model.autocompletesTest ();
    await model.buutonsTest ();
   } finally {
