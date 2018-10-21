@@ -1,11 +1,12 @@
 const webdriver = require('selenium-webdriver');
 const { Builder, By, Key, until, thread } = require('selenium-webdriver');
 const driver = new webdriver.Builder().withCapabilities(webdriver.Capabilities.chrome()).build();
+
 module.exports = {
   autocompletesTest: async () => {
     await driver.get('https://formy-project.herokuapp.com/');
     try {
-      await driver.findElement(By.linkText("Autocomplete")).click()
+      await driver.findElement(By.linkText("Autocomplete")).click() //linkText is just for a tag
       const autocomplete = driver.wait(
         until.elementLocated(By.id('autocomplete')), // in this case you tille webDriver to wait the element maximum 20000 seconde but if it find the element before that contniue
         20000
@@ -23,6 +24,7 @@ module.exports = {
 
   buutonsTest: async () => {
     try {
+      await driver.navigate().back()
       await driver.findElement(By.linkText("Buttons")).click()
       const btnPrimary = driver.wait(
 
@@ -35,6 +37,9 @@ module.exports = {
       await driver.findElement(By.className('btn-warning')).click();
       await driver.findElement(By.className('btn-danger')).click();
       await driver.findElement(By.className('btn-danger')).click();
+      await driver.findElement(By.xpath("//button[contains(.,'Left')]")).click(); // to click on a button has specific text
+      await driver.findElement(By.xpath("//button[contains(.,'Middle')]")).click();
+      await driver.findElement(By.xpath("//button[contains(.,'Right')]")).click();
 
 
     }
