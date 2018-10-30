@@ -1,5 +1,5 @@
 const webdriver = require('selenium-webdriver');
-const { Builder, By, Key, until, thread } = require('selenium-webdriver');
+const { Builder, By, Key, until, thread, actions } = require('selenium-webdriver');
 const driver = new webdriver.Builder().withCapabilities(webdriver.Capabilities.chrome()).build();
 
 module.exports = {
@@ -32,6 +32,7 @@ module.exports = {
         20000
       );
       await btnPrimary.click();
+      await driver.manage().window().setSize(1280, 1000)
       await driver.findElement(By.className('btn-success')).click();
       await driver.findElement(By.className('btn-info')).click();
       await driver.findElement(By.className('btn-warning')).click();
@@ -40,7 +41,13 @@ module.exports = {
       await driver.findElement(By.xpath("//button[contains(.,'Left')]")).click(); // to click on a button has specific text
       await driver.findElement(By.xpath("//button[contains(.,'Middle')]")).click();
       await driver.findElement(By.xpath("//button[contains(.,'Right')]")).click();
+      await driver.findElement(By.xpath("//button[contains(.,'1')]")).click();
+      await driver.findElement(By.xpath("//button[contains(.,'2')]")).click();
+      await driver.findElement(By.xpath("//button[contains(.,'Dropdown')]")).click();
 
+      const element = driver.findElement(By.className('dropdown-item'));
+
+      await driver.actions.mouseMove(element).perform();
 
     }
     catch (error) {

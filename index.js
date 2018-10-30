@@ -7,6 +7,6 @@ const model = require ('./services/index');
    await model.autocompletesTest ();
    await model.buutonsTest ();
   } finally {
-   // await driver.quit();
+    await driver.close();
   }
 })();
